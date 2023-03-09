@@ -1,10 +1,8 @@
 package com.diatoz.visitor.management.serviceimpl;
 
 import com.diatoz.visitor.management.entity.Badges;
-import com.diatoz.visitor.management.entity.Premises;
-import com.diatoz.visitor.management.exception.AlreadyExistsException;
-import com.diatoz.visitor.management.exception.EntityNotFoundException;
-import com.diatoz.visitor.management.model.BadgesModel;
+import com.diatoz.visitor.management.entity.User;
+import com.diatoz.visitor.management.exception.ResourceNotFoundException;
 import com.diatoz.visitor.management.repository.BadgesRepository;
 import com.diatoz.visitor.management.service.BadgesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,59 +22,30 @@ public class BadgesServiceImpl implements BadgesService {
         return badgesRepository.findAll();
     }
 
+
     @Override
-    public BadgesModel findById(Long id) {
-    BadgesModel model= new BadgesModel();
-        try {
-            model.setBadges((Badges) badgesRepository.findById(id).orElseThrow(() ->
-                    new EntityNotFoundException("Badges with id not found")));
-            model.setErrorMessage(" ");
-            if (!model.getBadges().getId().equals(id)) {
-                throw new EntityNotFoundException("");
-            }
-        } catch (EntityNotFoundException e) {
-            model.setBadges(null);
-            model.setErrorMessage(e.getMessage());
-        }
-        return model;
+    public Badges getBadgesById(Long id) {
+        Badges badges = badgesRepository.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("Badges", "id", id));
+        return badgesRepository.getById(id);
     }
 
 
 
     @Override
-    public BadgesModel saveBadges(Badges badges) throws AlreadyExistsException {
-        BadgesModel model= new BadgesModel();
+    public Badges saveBadges(Badges badges){
+        return badgesRepository.save(badges);
 
-        try {
-            model.setBadges((Badges) badgesRepository.save(badges));
-            if (model != null) {
-                badgesRepository.save(badges);
-
-            } else {
-                throw new AlreadyExistsException(
-                        "badges already exists!!");
-            }
-        } catch (DataIntegrityViolationException e) {
-            throw new AlreadyExistsException("Badges already exists!!");
-        }
-
-        return model;
     }
 
 
     @Override
-    public BadgesModel deleteById(Long id) {
-            BadgesModel model= new BadgesModel();
-        try {
-            if (!badgesRepository.existsById(id)) {
-                throw new EntityNotFoundException(" Badges with id not exists");
-            }
-            badgesRepository.deleteById(id);
-
-        } catch (EntityNotFoundException e) {
-            model.setErrorMessage(e.getMessage());
-        }
-        return model;
-
+    public void deleteBadgesById(Long id) {
+        Badges badges = badgesRepository.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("Badges", "id", id));
+        badgesRepository.deleteById(id);
     }
 }
+
+
+

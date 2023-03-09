@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 @Table(name="acesscontrol")
-public class AcessControl {
+public class AccessControl {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

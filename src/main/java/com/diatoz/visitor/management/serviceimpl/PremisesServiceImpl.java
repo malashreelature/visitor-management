@@ -1,15 +1,10 @@
 package com.diatoz.visitor.management.serviceimpl;
 
 import com.diatoz.visitor.management.entity.Premises;
-import com.diatoz.visitor.management.entity.VisitorLog;
-import com.diatoz.visitor.management.exception.AlreadyExistsException;
-import com.diatoz.visitor.management.exception.EntityNotFoundException;
-import com.diatoz.visitor.management.model.PremisesModel;
-import com.diatoz.visitor.management.model.VisitorLogModel;
+import com.diatoz.visitor.management.exception.ResourceNotFoundException;
 import com.diatoz.visitor.management.repository.PremisesRepository;
 import com.diatoz.visitor.management.service.PremisesService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,54 +21,22 @@ public class PremisesServiceImpl implements PremisesService {
     }
 
     @Override
-    public PremisesModel findById(Long id) {
-        PremisesModel model = new PremisesModel();
-        try {
-            model.setPremises((Premises) premisesRepository.findById(id).orElseThrow(() ->
-                    new EntityNotFoundException("premises with id not found")));
-            model.setErrorMessage(" ");
-            if (!model.getPremises().getId().equals(id)) {
-                throw new EntityNotFoundException("");
-            }
-        } catch (EntityNotFoundException e) {
-            model.setPremises(null);
-            model.setErrorMessage(e.getMessage());
-        }
-        return model;
+    public Premises getPremiseById(Long id) {
+        Premises premises=premisesRepository.findById(id).orElseThrow(() ->
+        new ResourceNotFoundException("Premises", "id", id));
+        return premisesRepository.getById(id);
     }
 
     @Override
-    public PremisesModel deleteById(Long id) {
-        PremisesModel model = new PremisesModel();
-        try {
-            if (!premisesRepository.existsById(id)) {
-                throw new EntityNotFoundException(" Premises with id not exists");
-            }
-            premisesRepository.deleteById(id);
-
-        } catch (EntityNotFoundException e) {
-            model.setErrorMessage(e.getMessage());
-        }
-        return model;
-
+    public Premises savePremises(Premises premises) {
+        return premisesRepository.save(premises);
     }
 
     @Override
-    public PremisesModel savePremises(Premises premises) throws AlreadyExistsException {
-        PremisesModel model = new PremisesModel();
-        try {
-            model.setPremises((Premises) premisesRepository.save(premises));
-            if (model != null) {
-                premisesRepository.save(premises);
-
-            } else {
-                throw new AlreadyExistsException(
-                        "Premises already exists!!");
-            }
-        } catch (DataIntegrityViolationException e) {
-            throw new AlreadyExistsException("Premises already exists!!");
-        }
-
-        return model;
+    public void deletePremisesById(Long id) {
+        Premises premises = premisesRepository.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("Premises", "id", id));
+        premisesRepository.deleteById(id);
     }
 }
+

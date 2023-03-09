@@ -1,7 +1,6 @@
 package com.diatoz.visitor.management.controller;
 
 import com.diatoz.visitor.management.entity.Host;
-import com.diatoz.visitor.management.model.HostModel;
 import com.diatoz.visitor.management.service.HostService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,57 +17,30 @@ public class HostController {
     HostService hostService;
 
 
-    @GetMapping("/allHost")
+    @GetMapping("/host/all")
     @ApiOperation(value="It Is finding all Host ")
     public List<Host> getAll(){
         return hostService.getAll();
     }
 
     @PostMapping("/host")
-    @ApiOperation(value="It Is creating new Host ")
-    public ResponseEntity<HostModel> CreateHost(@RequestBody Host host) {
-        HostModel model = new HostModel();
-        try {
-            if (model != null) {
-                model = (HostModel) hostService.saveHost(host);
-                return new ResponseEntity<>(model, HttpStatus.CREATED);
-            } else {
-                return new ResponseEntity<>(model, HttpStatus.NOT_FOUND);
-            }
-
-        } catch (Exception e) {
-            return new ResponseEntity<>(model, HttpStatus.valueOf(500));
-        }
-
-    }
-
-
-
+    public ResponseEntity<?> createHost(@RequestBody Host host){
+        hostService.saveHost(host);
+        return new ResponseEntity<>("Host entity created successfully.", HttpStatus.CREATED);    }
 
     @GetMapping("/host/{hostId}")
-    @ApiOperation(value="It Is finding new Host By hostId ")
-    public ResponseEntity<HostModel> getById(@PathVariable Long hostId) {
-        HostModel outputModel = new HostModel();
-        try {
-            outputModel = this.hostService.findById(hostId);
-            if (outputModel.getErrorMessage().equals("")) {
-                return new ResponseEntity<>(outputModel, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(outputModel, HttpStatus.NOT_FOUND);
-            }
-        } catch (Exception e) {
-            return new ResponseEntity<>(outputModel, HttpStatus.valueOf(500));
-        }
-
-
+    public ResponseEntity<Host> getHostById(@PathVariable("hostId") Long hostId){
+        return ResponseEntity.ok(hostService.getHostById(hostId));
     }
 
-    @DeleteMapping("/host/{id}")
-    @ApiOperation(value="It Is deleting new Host b hostId ")
-    public ResponseEntity<HostModel> deleteHost(@PathVariable("id") Long hostId) {
-        HostModel outputModel1 = new HostModel();
-        outputModel1 = (HostModel) this.hostService.deleteById(hostId);
-        return new ResponseEntity<>(outputModel1, HttpStatus.OK);
 
+
+    @DeleteMapping("/host/{hostId}")
+    public ResponseEntity<String> deleteUser(@PathVariable("hostId") Long hostId){
+
+        hostService.deleteHostById(hostId);
+
+        return new ResponseEntity<>("Host entity deleted successfully.", HttpStatus.OK);
     }
 }
+

@@ -1,18 +1,17 @@
 package com.diatoz.visitor.management.service;
 
 import com.diatoz.visitor.management.entity.VisitorLog;
-import com.diatoz.visitor.management.model.VisitorLogModel;
-import com.diatoz.visitor.management.exception.AlreadyExistsException;
 
 import java.util.List;
 
 public interface VisitorLogService {
 
     public List<VisitorLog> getAll();
-    VisitorLogModel findById(Long id);
 
-    Object  saveVisitorLog(VisitorLog visitorLog)throws AlreadyExistsException;
+    VisitorLog getVisitorLogById(Long id);
 
-    VisitorLogModel deleteById(Long id);
+    VisitorLog saveVisitorLog(VisitorLog visitorLog);
+
+    void deleteVisitorLogById(Long id);
 }
 

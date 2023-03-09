@@ -51,10 +51,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
    public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/swagger-ui/**",
                 "/v3/api-docs/**");
-
-
-
-
     }
 
    @Override
@@ -65,8 +61,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                .antMatchers("/authenticate")
                .permitAll()
                .antMatchers(HttpMethod.POST,"/visitor").permitAll()
-               .antMatchers(HttpMethod.DELETE,"/visitor/{id}").permitAll()
-               .antMatchers(HttpMethod.GET,"/visitor/{visitorId}").permitAll()
+               .antMatchers(HttpMethod.DELETE,"/{visitorId}").permitAll()
+               .antMatchers(HttpMethod.GET,"/{visitorId}").permitAll()
                .antMatchers(HttpMethod.GET,"/allvisitor").permitAll()
                .anyRequest()
                .authenticated()
