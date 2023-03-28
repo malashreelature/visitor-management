@@ -1,5 +1,4 @@
 package com.diatoz.visitor.management.controller;
-
 import com.diatoz.visitor.management.entity.User;
 import com.diatoz.visitor.management.service.UserDataService;
 import io.swagger.annotations.ApiOperation;
@@ -20,7 +19,6 @@ public class UserController {
     @ApiOperation(value="It Is finding all User Data")
 
     public ResponseEntity<List<User>> getAll() {
-
         List<User> listOfAll = userService.getAll();
         return new ResponseEntity<List<User>>(listOfAll, HttpStatus.OK);
     }
@@ -41,9 +39,7 @@ public class UserController {
 
     @DeleteMapping("/user/{userId}")
     public ResponseEntity<String> deleteUser(@PathVariable("userId") Long userId){
-
         userService.deleteUserById(userId);
-
         return new ResponseEntity<>("User entity deleted successfully.", HttpStatus.OK);
     }
 }

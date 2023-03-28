@@ -34,13 +34,9 @@ public class BadgesController {
         return ResponseEntity.ok(badgesService.getBadgesById(id));
     }
 
-
-
     @DeleteMapping("/badges/{id}")
     public ResponseEntity<String> deleteBadges(@PathVariable("id") Long id){
-
         badgesService.deleteBadgesById(id);
-
         return new ResponseEntity<>("Badges entity deleted successfully.", HttpStatus.OK);
     }
 }

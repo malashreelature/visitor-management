@@ -1,7 +1,4 @@
 package com.diatoz.visitor.management.serviceimpl;
-
-
-import com.diatoz.visitor.management.entity.Visitor;
 import com.diatoz.visitor.management.entity.VisitorLog;
 import com.diatoz.visitor.management.exception.ResourceNotFoundException;
 import com.diatoz.visitor.management.repository.VisitorLogRepository;
@@ -34,7 +31,7 @@ public class VisitorLogServiceImpl implements VisitorLogService {
 
 
     @Override
-    public VisitorLog saveVisitorLog(VisitorLog visitorLog){
+    public VisitorLog saveVisitorLog(VisitorLog visitorLog) {
         return visitorLogRepository.save(visitorLog);
 }
 
@@ -43,7 +40,7 @@ public class VisitorLogServiceImpl implements VisitorLogService {
     @Override
     public void deleteVisitorLogById(Long id) {
         VisitorLog visitor = visitorLogRepository.findById(id).orElseThrow(() ->
-                new ResourceNotFoundException("VisitorLog", "visitorId", id));
+                new ResourceNotFoundException("VisitorLog", "Id", id));
         visitorLogRepository.deleteById(id);
     }
 }

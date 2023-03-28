@@ -30,10 +30,9 @@ public class HostController {
 
     @GetMapping("/host/{hostId}")
     public ResponseEntity<Host> getHostById(@PathVariable("hostId") Long hostId){
+
         return ResponseEntity.ok(hostService.getHostById(hostId));
     }
-
-
 
     @DeleteMapping("/host/{hostId}")
     public ResponseEntity<String> deleteUser(@PathVariable("hostId") Long hostId){

@@ -1,5 +1,4 @@
 package com.diatoz.visitor.management.controller;
-
 import com.diatoz.visitor.management.entity.Premises;
 import com.diatoz.visitor.management.service.PremisesService;
 import io.swagger.annotations.ApiOperation;
@@ -16,7 +15,6 @@ public class PremisesController {
     @Autowired
     PremisesService premisesService;
 
-
     @GetMapping("/premises/all")
     @ApiOperation(value="It Is finding new all Premises Data")
 
@@ -24,16 +22,11 @@ public class PremisesController {
         return premisesService.getAll();
     }
 
-
     @PostMapping("/premises")
     public ResponseEntity<?> createPremises(@RequestBody Premises premises){
         premisesService.savePremises(premises);
         return new ResponseEntity<>("Premises entity created successfully.", HttpStatus.CREATED);
-
     }
-
-
-
 
     @GetMapping("/premises/{id}")
     public ResponseEntity<Premises> getPremiseById(@PathVariable("id") Long id){
@@ -42,9 +35,7 @@ public class PremisesController {
 
     @DeleteMapping("/premises/{id}")
     public ResponseEntity<String> deletePremises(@PathVariable("id") Long id){
-
         premisesService.deletePremisesById(id);
-
         return new ResponseEntity<>("premises entity deleted successfully.", HttpStatus.OK);
     }
 }

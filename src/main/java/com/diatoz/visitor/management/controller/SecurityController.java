@@ -1,5 +1,4 @@
 package com.diatoz.visitor.management.controller;
-
 import com.diatoz.visitor.management.serviceimpl.UserService;
 import com.diatoz.visitor.management.utility.JWTUtility;
 import com.diatoz.visitor.management.utility.JwtRequest;
@@ -28,10 +27,7 @@ public class SecurityController {
 
 
     @PostMapping("/authenticate")
-    @ApiOperation(value="It Is used to get token ")
-
     public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws Exception{
-
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
