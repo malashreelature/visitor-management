@@ -1,7 +1,5 @@
 package com.diatoz.visitor.management.service;
-
 import com.diatoz.visitor.management.entity.AccessControl;
-
 import java.util.List;
 
 public interface AccessControlService {
