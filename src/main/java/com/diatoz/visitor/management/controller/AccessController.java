@@ -18,25 +18,20 @@ public class AccessController {
     @Autowired
     AccessControlService accessControlService;
 
-    @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("/access/all")
     public List<AccessControl> getAll(){
         return accessControlService.getAll();
     }
 
-    @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping("/access")
     public ResponseEntity<?> createUser(@RequestBody AccessControl acessControl){
         accessControlService.saveAcessControl(acessControl);
         return new ResponseEntity<>("Access entity created successfully.", HttpStatus.CREATED);    }
 
-    @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("/access/{accessId}")
     public ResponseEntity<AccessControl> getUserById(@PathVariable("accessId") Long accessId){
         return ResponseEntity.ok(accessControlService.getAccessById(accessId));
     }
-    @Operation(summary = "Delete user", description = "Delete user")
-    @SecurityRequirement(name = "Bearer Authentication")
     @DeleteMapping("/access/{accessId}")
     public ResponseEntity<String> deleteUser(@PathVariable("accessId") Long accessId){
         accessControlService.deleteAccessById(accessId);

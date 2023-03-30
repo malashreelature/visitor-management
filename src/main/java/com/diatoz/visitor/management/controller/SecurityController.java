@@ -4,6 +4,7 @@ import com.diatoz.visitor.management.utility.JWTUtility;
 import com.diatoz.visitor.management.utility.JwtRequest;
 import com.diatoz.visitor.management.utility.JwtResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @SecurityRequirement(name = "bearerAuth")
+@Tag(name = "SecurityController", description = "The SecurityController API. is Used to Generate Token  SecurityController.")
 public class SecurityController {
 
     @Autowired

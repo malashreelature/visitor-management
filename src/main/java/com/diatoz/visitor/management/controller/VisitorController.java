@@ -2,6 +2,7 @@ package com.diatoz.visitor.management.controller;
 import com.diatoz.visitor.management.entity.Visitor;
 import com.diatoz.visitor.management.service.VisitorService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController
 @SecurityRequirement(name = "bearerAuth")
+@Tag(name = "VisitorController", description = "The VisitorController API. Contains all the operations that can be performed on a VisitorController.")
 public class VisitorController {
     @Autowired
     VisitorService visitorService;

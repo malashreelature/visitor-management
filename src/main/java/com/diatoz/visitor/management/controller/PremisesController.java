@@ -2,6 +2,7 @@ package com.diatoz.visitor.management.controller;
 import com.diatoz.visitor.management.entity.Premises;
 import com.diatoz.visitor.management.service.PremisesService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController
 @SecurityRequirement(name = "bearerAuth")
+@Tag(name = "PremisesController", description = "The PremisesController API. Contains all the operations that can be performed on a PremisesController.")
 public class PremisesController {
 
     @Autowired

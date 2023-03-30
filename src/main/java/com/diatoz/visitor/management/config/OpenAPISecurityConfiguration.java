@@ -21,7 +21,7 @@ import org.springframework.context.annotation.Configuration;
 
         servers = @Server(
                 url = "${api.server.url}",
-                description = "Production"
+                description = "local"
         )
 )
 public class OpenAPISecurityConfiguration {}
