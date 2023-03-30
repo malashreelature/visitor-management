@@ -22,12 +22,10 @@ public class VisitorController {
     @Autowired
     private ModelMapper modelMapper;
 
+    @Autowired
     private VisitorService visitorService;
 
-    public VisitorController(VisitorService visitorService) {
-        super();
-        this.visitorService = visitorService;
-    }
+
 
     @GetMapping("/visitor/all")
     public List<VisitorDto> getAllVisitor() {

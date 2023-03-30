@@ -25,7 +25,7 @@ public class AccessControlServiceImpl implements AccessControlService {
     public AccessControl getAccessById(Long accessId) {
         AccessControl AcessControl = acessControlRepository.findById(accessId).orElseThrow(() ->
                 new ResourceNotFoundException("AccessControl", "id", accessId));
-        return acessControlRepository.getById(accessId);
+        return AcessControl;
     }
 
 
