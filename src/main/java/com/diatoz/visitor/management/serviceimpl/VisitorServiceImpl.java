@@ -28,7 +28,7 @@ public class VisitorServiceImpl implements VisitorService {
     public Visitor getVisitorById(Long visitorId) {
         Visitor visitor = visitorRepository.findById(visitorId).orElseThrow(() ->
                 new ResourceNotFoundException("Visitor", "visitorId", visitorId));
-        return visitorRepository.getById(visitorId);
+        return visitor;
     }
 
 
@@ -44,7 +44,6 @@ public class VisitorServiceImpl implements VisitorService {
     public void deleteVisitorById(Long visitorId) {
         Visitor visitor = visitorRepository.findById(visitorId).orElseThrow(() ->
                 new ResourceNotFoundException("Visitor", "visitorId", visitorId));
-        visitorRepository.deleteById(visitorId);
     }
 }
 
