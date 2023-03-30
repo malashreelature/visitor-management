@@ -2,7 +2,6 @@ package com.diatoz.visitor.management;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.willDoNothing;
 import static org.mockito.Mockito.*;
-
 import com.diatoz.visitor.management.entity.User;
 import com.diatoz.visitor.management.repository.UserDataRepository;
 import com.diatoz.visitor.management.service.UserDataService;

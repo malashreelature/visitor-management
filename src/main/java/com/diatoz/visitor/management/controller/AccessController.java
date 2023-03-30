@@ -1,7 +1,6 @@
 package com.diatoz.visitor.management.controller;
 import com.diatoz.visitor.management.entity.AccessControl;
 import com.diatoz.visitor.management.service.AccessControlService;
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;

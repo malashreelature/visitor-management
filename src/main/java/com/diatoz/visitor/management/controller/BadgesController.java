@@ -35,7 +35,7 @@ public class BadgesController {
     public ResponseEntity<Badges> getBadgesById(@PathVariable("id") Long id){
         return ResponseEntity.ok(badgesService.getBadgesById(id));
     }
-    @SecurityRequirement(name = "Bearer Authentication")
+
     @DeleteMapping("/badges/{id}")
     public ResponseEntity<String> deleteBadges(@PathVariable("id") Long id){
         badgesService.deleteBadgesById(id);
