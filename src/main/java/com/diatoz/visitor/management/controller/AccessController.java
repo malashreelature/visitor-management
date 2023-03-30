@@ -28,10 +28,12 @@ public class AccessController {
         accessControlService.saveAcessControl(acessControl);
         return new ResponseEntity<>("Access entity created successfully.", HttpStatus.CREATED);    }
 
+
     @GetMapping("/access/{accessId}")
     public ResponseEntity<AccessControl> getUserById(@PathVariable("accessId") Long accessId){
         return ResponseEntity.ok(accessControlService.getAccessById(accessId));
     }
+
     @DeleteMapping("/access/{accessId}")
     public ResponseEntity<String> deleteUser(@PathVariable("accessId") Long accessId){
         accessControlService.deleteAccessById(accessId);
