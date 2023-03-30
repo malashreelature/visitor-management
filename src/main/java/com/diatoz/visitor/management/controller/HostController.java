@@ -2,7 +2,7 @@ package com.diatoz.visitor.management.controller;
 
 import com.diatoz.visitor.management.entity.Host;
 import com.diatoz.visitor.management.service.HostService;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@SecurityRequirement(name = "bearerAuth")
 public class HostController {
 
     @Autowired
@@ -18,7 +19,6 @@ public class HostController {
 
 
     @GetMapping("/host/all")
-    @ApiOperation(value="It Is finding all Host ")
     public List<Host> getAll(){
         return hostService.getAll();
     }

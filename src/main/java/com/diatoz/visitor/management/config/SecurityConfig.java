@@ -1,7 +1,5 @@
 package com.diatoz.visitor.management.config;
 
-import org.springframework.http.HttpMethod;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import com.diatoz.visitor.management.serviceimpl.UserService;
 import com.diatoz.visitor.management.utility.JwtFilter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -21,7 +20,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Configuration
 @EnableWebSecurity
 @EnableWebMvc
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     @Bean
@@ -36,6 +35,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtFilter jwtFilter;
 
+
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
@@ -48,27 +49,27 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
     @Override
-   public void configure(WebSecurity web) throws Exception {
+    public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/swagger-ui/**",
                 "/v3/api-docs/**");
     }
 
-   @Override
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
-       http.csrf()
-               .disable()
-               .authorizeRequests()
-               .antMatchers("/authenticate")
-               .permitAll()
-               .anyRequest()
-               .authenticated()
-               .and()
-               .sessionManagement()
-               .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.csrf()
+                .disable()
+                .authorizeRequests()
+                .antMatchers("/authenticate")
+                .permitAll()
+                .anyRequest()
+                .authenticated()
+                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-       http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
 
-   }
+    }
 
 }

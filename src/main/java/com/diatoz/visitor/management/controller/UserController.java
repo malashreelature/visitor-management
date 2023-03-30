@@ -1,7 +1,7 @@
 package com.diatoz.visitor.management.controller;
 import com.diatoz.visitor.management.entity.User;
 import com.diatoz.visitor.management.service.UserDataService;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,14 +10,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@SecurityRequirement(name = "bearerAuth")
 public class UserController {
 
     @Autowired
     UserDataService userService;
 
     @GetMapping("/user/all")
-    @ApiOperation(value="It Is finding all User Data")
-
     public ResponseEntity<List<User>> getAll() {
         List<User> listOfAll = userService.getAll();
         return new ResponseEntity<List<User>>(listOfAll, HttpStatus.OK);

@@ -40,10 +40,19 @@
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>io.swagger.core.v3</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>2.0.10</version>
+		</dependency>
+
+		<dependency>
 			<!-- Starter for using Spring Security -->
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+
+			<!-- Generate beautiful documentation from a Swagger-compliant API. -->
+
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-ui</artifactId>
@@ -81,18 +90,6 @@
 
 			<!-- Automated JSON API documentation for API's built with Spring -->
 
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			<version>2.5.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>2.5.0</version>
-		</dependency>
-
 
 		<dependency>
 			<!-- JSON Web Token Support -->
@@ -121,6 +118,7 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 
 	</dependencies>
 
