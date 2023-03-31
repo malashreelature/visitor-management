@@ -1,5 +1,4 @@
 package com.diatoz.visitor.management.config;
-
 import com.diatoz.visitor.management.serviceimpl.UserService;
 import com.diatoz.visitor.management.utility.JwtFilter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,19 +21,11 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
-    }
-
-
     @Autowired
     private UserService userService;
 
     @Autowired
     private JwtFilter jwtFilter;
-
 
 
     @Override
@@ -53,6 +44,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/swagger-ui/**",
                 "/v3/api-docs/**");
     }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return NoOpPasswordEncoder.getInstance();
+    }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
