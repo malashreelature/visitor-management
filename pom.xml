@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>murraco</groupId>
-	<artifactId>jwt-auth-service</artifactId>
+	<artifactId>visitor-management</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
@@ -44,7 +44,10 @@
 			<artifactId>swagger-annotations</artifactId>
 			<version>2.0.10</version>
 		</dependency>
-
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+	</dependency>
 		<dependency>
 			<!-- Starter for using Spring Security -->
 			<groupId>org.springframework.boot</groupId>
